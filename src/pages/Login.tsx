@@ -15,7 +15,7 @@ function Login() {
     password: z.string().nonempty("Campo Obrigatório")
   })
 
-  const lista = [2,3]
+  const lista = [2, 3]
   const { handleSubmit, formState: { errors }, register, setValue } = useForm<z.infer<typeof formSchema>>(
     {
       resolver: zodResolver(formSchema),
@@ -35,18 +35,35 @@ function Login() {
   }
 
   return (
-    <section className=" h-screen w-96 item">
-      <Form variation='teste'>
-        <Input.Root >
-          <Input.Label> Cossorro</Input.Label>
-          <Input.Text variation='aaaa'></Input.Text>
-        </Input.Root>
-        <Button variation={'red'}>OIIIIIII</Button>
-      </Form>
+    <section className=' flex h-screen w-full justify-center items-center bg-slate-500 '>
+      <div className='flex w-96 h-96 items-center bg-slate-400 p-4'>
 
-      <Dropdown.Menu>
-        <Dropdown.Option variation='default' value={1} label='1'></Dropdown.Option>
-      </Dropdown.Menu>
+        <Form variation='default'>
+          <h1 className='items-center'>Entre no Jogo</h1>
+          <Input.Root >
+            <Input.Label>Nome</Input.Label>
+            <Input.Text variation='aaaa'></Input.Text>
+          </Input.Root>
+
+          <Input.Root>
+            <Input.Label>E-mail</Input.Label>
+            <Input.Text variation='aaaa'></Input.Text>
+          </Input.Root>
+
+          <Input.Root>
+            <Input.Label>Senha</Input.Label>
+            <Input.Text variation='aaaa'></Input.Text>
+          </Input.Root>
+          <div >
+          <Input.Root>
+            <Input.Label>oie</Input.Label>
+            <input type='radio' value={'true'}></input>
+          </Input.Root>
+          </div>
+          
+          <Button variation='blue'>Entrar</Button>
+        </Form>
+      </div>
     </section>
   )
 }

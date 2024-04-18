@@ -38,7 +38,7 @@ const inputVariations = {
   dropdown: (_: TextProps) =>
     <TextContainer {..._} className="cursor-pointer h-9 rounded border bg-white border-black text-black indent-1 p-1 text-ellipsis overflow-hidden" />,
   aaaa: (_: TextProps) =>
-    <TextContainer {..._} className="cursor-pointet h-7 bg-gray-500 text-white p-2" /> 
+    <TextContainer {..._} className="h-9 rounded border cursor-pointet bg-slate-200 text-white " /> 
 }
 
 const labelVariations = {

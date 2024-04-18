@@ -16,10 +16,7 @@ interface FormComponent extends FormVariation {
 
 const formsVariation = {
     default: (props: FormVariation) =>
-        <FormContainer {...props} className='space-y-4 md:space-y-6' />,
-
-    teste: (props: FormVariation) => 
-        <FormContainer {...props} className='justify-center' /> 
+        <FormContainer {...props} className='flex flex-col gap-3 w-full' />,
 }
 
 function FormContainer(props: FormContainerProps) {
