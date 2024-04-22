@@ -32,13 +32,7 @@ const rootVariations = {
 
 const inputVariations = {
   default: (_: TextProps) =>
-    <TextContainer {..._} className="h-9 rounded border bg-white border-black text-black indent-1 p-1  " />,
-  password: (_: TextProps) =>
-    <TextContainer {..._} className="h-9 rounded border border-black text-black indent-1 p-1" />,
-  dropdown: (_: TextProps) =>
-    <TextContainer {..._} className="cursor-pointer h-9 rounded border bg-white border-black text-black indent-1 p-1 text-ellipsis overflow-hidden" />,
-  aaaa: (_: TextProps) =>
-    <TextContainer {..._} className="h-9 rounded border cursor-pointet bg-slate-200 text-white " /> 
+    <TextContainer {..._} className="h-9 rounded border-2 shadow-sm border-zinc-300 cursor-pointet bg-zinc-200 text-white bg-transparent" /> 
 }
 
 const labelVariations = {

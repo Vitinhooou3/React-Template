@@ -20,9 +20,9 @@ const buttonVariations = {
   green: (props: ButtonVariation) =>
     <ButtonContainer {...props} className='bg-green-500' />,
   blue: (props: ButtonVariation) =>
-    <ButtonContainer {...props} className='bg-blue-400 h-9 rounded' />,
+    <ButtonContainer {...props} className='bg-indigo-700' />,
   default: (props: ButtonVariation) =>
-    <ButtonContainer {...props} className='bg-red-500' />,
+    <ButtonContainer {...props} className='bg-indigo-600 h-9 rounded text-white font-bold' />,
 }
 
 function ButtonContainer(_: ButtonContainerProps) {

@@ -35,33 +35,27 @@ function Login() {
   }
 
   return (
-    <section className=' flex h-screen w-full justify-center items-center bg-slate-500 '>
-      <div className='flex w-96 h-96 items-center bg-slate-400 p-4'>
-
+    <section className=' flex flex-col gap-6 h-screen w-full justify-center items-center bg-gradient-to-b from-zinc-100 to-zinc-50'>
+      <h1 className='items-center text-xl font-bold'>Entre no Jogo</h1>
+      <div className='flex flex-col w-96 h-86 items-center bg-white p-9 rounded shadow'>
         <Form variation='default'>
-          <h1 className='items-center'>Entre no Jogo</h1>
-          <Input.Root >
-            <Input.Label>Nome</Input.Label>
-            <Input.Text variation='aaaa'></Input.Text>
-          </Input.Root>
 
           <Input.Root>
             <Input.Label>E-mail</Input.Label>
-            <Input.Text variation='aaaa'></Input.Text>
+            <Input.Text variation='default'></Input.Text>
           </Input.Root>
 
           <Input.Root>
             <Input.Label>Senha</Input.Label>
-            <Input.Text variation='aaaa'></Input.Text>
+            <Input.Text variation='default'></Input.Text>
           </Input.Root>
-          <div >
-          <Input.Root>
-            <Input.Label>oie</Input.Label>
-            <input type='radio' value={'true'}></input>
-          </Input.Root>
-          </div>
           
-          <Button variation='blue'>Entrar</Button>
+          <div className='flex justify-between'>
+            <span> <input type="checkbox" value={'true'} className='border-none outline-none'/> Lembrar usuário</span>
+            <a href='/home' className='text-blue-700 float-right'>Esqueceu a senha?</a>
+          </div>
+
+          <Button variation='default'>Entrar</Button>
         </Form>
       </div>
     </section>
