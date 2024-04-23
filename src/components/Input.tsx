@@ -32,7 +32,7 @@ const rootVariations = {
 
 const inputVariations = {
   default: (_: TextProps) =>
-    <TextContainer {..._} className="h-9 rounded border-2 shadow-sm border-zinc-300 cursor-pointet bg-zinc-200 text-white bg-transparent" /> 
+    <TextContainer {..._} className="h-9 rounded border-2 shadow-sm border-zinc-300 cursor-pointet bg-white text-white bg-transparent" /> 
 }
 
 const labelVariations = {

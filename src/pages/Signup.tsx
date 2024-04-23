@@ -4,6 +4,9 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SignupService } from './../services/SignupService';
 import {Button} from '../components/Button'
+import Input from '../components/Input';
+import { Form } from '../components/Form';
+import { Link } from 'react-router-dom';
 
 function Signup() {
     const [loginLoading, setLoginLoding] = useState(false)
@@ -33,10 +36,44 @@ function Signup() {
     }
 
     return (
-        <section className=" min-h-screen flex items-center ">
+        <section className=' flex flex-col gap-6 h-screen w-full justify-center items-center bg-gradient-to-b from-zinc-100 to-zinc-50'>
+        <h1 className='items-center text-xl font-bold'>Entre no Jogo</h1>
+        <div className='flex flex-col w-96 h-86 items-center bg-white p-9 rounded shadow'>
+          <Form variation='default'>
+  
+            <Input.Root>
+              <Input.Label>Nome</Input.Label>
+              <Input.Text variation='default'></Input.Text>
+            </Input.Root>
 
-        </section>
+            
+            <Input.Root>
+              <Input.Label>RA</Input.Label>
+              <Input.Text variation='default'></Input.Text>
+            </Input.Root>
 
+            <Input.Root>
+              <Input.Label>E-mail</Input.Label>
+              <Input.Text variation='default'></Input.Text>
+            </Input.Root>
+
+            <Input.Root>
+              <Input.Label>Senha</Input.Label>
+              <Input.Text variation='default'></Input.Text>
+            </Input.Root>
+
+            <Input.Root>
+              <Input.Label>Confirmar Senha</Input.Label>
+              <Input.Text variation='default'></Input.Text>
+            </Input.Root>
+  
+            <Button variation='default'>Cadastrar</Button>
+          </Form>
+        </div>
+            <div className='flex flex-col justify-between'>
+              <Link to='/login' className='text-blue-700 float-right'>Já possui uma conta? Clique aqui!</Link>
+            </div>
+      </section>
     )
 }
 
