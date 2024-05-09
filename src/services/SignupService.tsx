@@ -1,18 +1,17 @@
 
 import axios from 'axios';
-import { registerUserUrl } from './api';
 import { SignupForm } from '../interfaces/data/SignupForm';
+import { api } from './api';
+import { toast } from 'react-toastify';
 
 export class SignupService {
-  async signupPost(_: SignupForm) {
-    const result = axios.post(registerUserUrl,
-      {
-        username: _.email,
-        password: _.password,
-        confirmPassword: _.passwordConfirm
-      }
+  async signupPost(singupForm : SignupForm) {
+    const result = axios.post("https://localhost:7240/create-user",
+      singupForm
     )
       .then(response => {
+
+        toast.success("Cadastro realizado com sucesso");
         return response
       })
       .catch((error) => {

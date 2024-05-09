@@ -7,6 +7,8 @@ import Input from '../components/Input'
 import Dropdown from '../components/Dropdown'
 import { Form } from '../components/Form'
 import { Button } from '../components/Button'
+import { Span } from '../components/Span'
+import { Link } from 'react-router-dom'
 
 function Login() {
   const [loginLoading, setLoginLoding] = useState(false)
@@ -15,7 +17,6 @@ function Login() {
     password: z.string().nonempty("Campo Obrigatório")
   })
 
-  const lista = [2, 3]
   const { handleSubmit, formState: { errors }, register, setValue } = useForm<z.infer<typeof formSchema>>(
     {
       resolver: zodResolver(formSchema),
@@ -23,7 +24,7 @@ function Login() {
   );
   const { signIn } = useContext(AuthContext)
 
-  async function handleSingIn(data: any) {
+  async function handleSingIn(data) {
     setLoginLoding(true)
     await signIn(data)
       .then(() => {
@@ -38,16 +39,18 @@ function Login() {
     <section className=' flex flex-col gap-6 h-screen w-full justify-center items-center bg-gradient-to-b from-zinc-100 to-zinc-50'>
       <h1 className='items-center text-xl font-bold'>Entre no Jogo</h1>
       <div className='flex flex-col w-96 h-86 items-center bg-white p-9 rounded shadow'>
-        <Form variation='default'>
+        <Form onSubmit={handleSubmit(handleSingIn)} variation='default'>
 
           <Input.Root>
             <Input.Label>E-mail</Input.Label>
-            <Input.Text variation='default'></Input.Text>
+            <Input.Text register={register("email")} variation='default'></Input.Text>
+            <Span variation='error'>{errors.email?.message}</Span>
           </Input.Root>
 
           <Input.Root>
             <Input.Label>Senha</Input.Label>
-            <Input.Text variation='default'></Input.Text>
+            <Input.Text register={register("password")} variation='default'></Input.Text>
+            <Span variation='error'>{errors.password?.message}</Span>
           </Input.Root>
           
           <div className='flex justify-between'>
@@ -57,6 +60,10 @@ function Login() {
 
           <Button variation='default'>Entrar</Button>
         </Form>
+      </div>
+      <div className='flex flex-row justify-center gap-2'>
+        <p>Não possui uma conta? </p>
+        <Link to='/signup' className='text-blue-700 float-right'>Clique aqui!</Link>
       </div>
     </section>
   )

@@ -27,12 +27,12 @@ interface RootProps extends Omit<RootContainerProps, "className"> {
 
 const rootVariations = {
   default: (_: RootProps) =>
-    <RootContainer {..._} className="flex-col flex relative text-zinc-200" />
+    <RootContainer {..._} className="flex-col flex relative" />
 }
 
 const inputVariations = {
   default: (_: TextProps) =>
-    <TextContainer {..._} className="h-9 rounded border-2 shadow-sm border-zinc-300 cursor-pointet bg-white text-white bg-transparent" /> 
+    <TextContainer {..._} className="h-9 rounded border-2 shadow-sm border-zinc-300 cursor-pointet bg-white text-zinc-800 bg-transparent" /> 
 }
 
 const labelVariations = {

@@ -1,10 +1,10 @@
 import axios from "axios";
-import { loginUrl } from "./api";
 import { LoginForm } from "../interfaces/data/LoginForm";
+import { api } from "./api";
 
 export class LoginService {
   loginPost(_: LoginForm) {
-    const result = axios.post(loginUrl, {
+    const result = axios.post("https://localhost:7240/sign-in", {
       email: _.email,
       password: _.password
     })

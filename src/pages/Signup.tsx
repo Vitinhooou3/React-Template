@@ -7,6 +7,8 @@ import {Button} from '../components/Button'
 import Input from '../components/Input';
 import { Form } from '../components/Form';
 import { Link } from 'react-router-dom';
+import { number } from '../extensions/zod';
+import { Span } from '../components/Span';
 
 function Signup() {
     const [loginLoading, setLoginLoding] = useState(false)
@@ -14,6 +16,8 @@ function Signup() {
     const signupService = new SignupService()
     const formSchema = z.object({
         email: z.string().nonempty("Campo Obrigatório").email("E-mail Inválido"),
+        studentCode: z.string().nonempty("Campo Obrigatório").refine( data => number(data),"Apenas Números"),
+        name: z.string().nonempty("Campo Obrigatório"),
         password: z.string().nonempty("Campo Obrigatório"),
         passwordConfirm: z.string().nonempty("Campo Obrigatório")
     })
@@ -39,40 +43,46 @@ function Signup() {
         <section className=' flex flex-col gap-6 h-screen w-full justify-center items-center bg-gradient-to-b from-zinc-100 to-zinc-50'>
         <h1 className='items-center text-xl font-bold'>Entre no Jogo</h1>
         <div className='flex flex-col w-96 h-86 items-center bg-white p-9 rounded shadow'>
-          <Form variation='default'>
+          <Form onSubmit={handleSubmit(handleSingup)} variation='default'>
   
             <Input.Root>
               <Input.Label>Nome</Input.Label>
-              <Input.Text variation='default'></Input.Text>
+              <Input.Text register={register("name")} variation='default'></Input.Text>
+              <Span variation="error">{errors.name?.message}</Span>
             </Input.Root>
 
             
             <Input.Root>
               <Input.Label>RA</Input.Label>
-              <Input.Text variation='default'></Input.Text>
+              <Input.Text register={register("studentCode")} variation='default'></Input.Text>
+              <Span variation='error'>{errors.studentCode?.message}</Span>
             </Input.Root>
 
             <Input.Root>
               <Input.Label>E-mail</Input.Label>
-              <Input.Text variation='default'></Input.Text>
+              <Input.Text register={register("email")} variation='default'></Input.Text>
+              <Span variation='error'>{errors.email?.message}</Span>
             </Input.Root>
 
             <Input.Root>
               <Input.Label>Senha</Input.Label>
-              <Input.Text variation='default'></Input.Text>
+              <Input.Text register={register("password")} variation='default'></Input.Text>
+              <Span variation='error'>{errors.password?.message}</Span>
             </Input.Root>
 
             <Input.Root>
               <Input.Label>Confirmar Senha</Input.Label>
-              <Input.Text variation='default'></Input.Text>
+              <Input.Text register={register("passwordConfirm")} variation='default'></Input.Text>
+              <Span variation='error'>{errors.passwordConfirm?.message}</Span>
             </Input.Root>
   
             <Button variation='default'>Cadastrar</Button>
           </Form>
         </div>
-            <div className='flex flex-col justify-between'>
-              <Link to='/login' className='text-blue-700 float-right'>Já possui uma conta? Clique aqui!</Link>
-            </div>
+        <div className='flex flex-row justify-center gap-2'>
+          <p>Já possui uma conta? </p>
+          <Link to='/login' className='text-blue-700 float-right'>Clique aqui!</Link>
+        </div>
       </section>
     )
 }
