@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { SignupService } from './../services/SignupService';
-import {Button} from '../components/Button'
-import Input from '../components/Input';
-import { Form } from '../components/Form';
+import { SignupService } from '../services/SignupService';
+import InputRoot from '../components/input-root'
+import InputText from '../components/input-text'
+import Label from '../components/label'
+import Span from '../components/span'
+import { Form } from '../components/form'
+import Button from '../components/button'
 import { Link } from 'react-router-dom';
-import { number } from '../extensions/zod';
-import { Span } from '../components/Span';
+import { number } from '../utils/extensions/zod';
+
 
 function Signup() {
     const [loginLoading, setLoginLoding] = useState(false)
@@ -45,38 +48,38 @@ function Signup() {
         <div className='flex flex-col w-96 h-86 items-center bg-white p-9 rounded shadow'>
           <Form onSubmit={handleSubmit(handleSingup)} variation='default'>
   
-            <Input.Root>
-              <Input.Label>Nome</Input.Label>
-              <Input.Text register={register("name")} variation='default'></Input.Text>
+            <InputRoot>
+              <Label>Nome</Label>
+              <InputText {...register("name")} variation='default'></InputText>
               <Span variation="error">{errors.name?.message}</Span>
-            </Input.Root>
+            </InputRoot>
 
-            
-            <Input.Root>
-              <Input.Label>RA</Input.Label>
-              <Input.Text register={register("studentCode")} variation='default'></Input.Text>
+          
+            <InputRoot>
+              <Label>RA</Label>
+              <InputText {...register("studentCode")} variation='default'></InputText>
               <Span variation='error'>{errors.studentCode?.message}</Span>
-            </Input.Root>
+            </InputRoot>
 
-            <Input.Root>
-              <Input.Label>E-mail</Input.Label>
-              <Input.Text register={register("email")} variation='default'></Input.Text>
+          <InputRoot>
+              <Label>E-mail</Label>
+              <InputText {...register("email")} variation='default'></InputText>
               <Span variation='error'>{errors.email?.message}</Span>
-            </Input.Root>
+            </InputRoot>
 
-            <Input.Root>
-              <Input.Label>Senha</Input.Label>
-              <Input.Text register={register("password")} variation='default'></Input.Text>
+          <InputRoot>
+              <Label>Senha</Label>
+              <InputText {...register("password")} variation='default'></InputText>
               <Span variation='error'>{errors.password?.message}</Span>
-            </Input.Root>
+            </InputRoot>
 
-            <Input.Root>
-              <Input.Label>Confirmar Senha</Input.Label>
-              <Input.Text register={register("passwordConfirm")} variation='default'></Input.Text>
+          <InputRoot>
+              <Label>Confirmar Senha</Label>
+              <InputText {...register("passwordConfirm")} variation='default'></InputText>
               <Span variation='error'>{errors.passwordConfirm?.message}</Span>
-            </Input.Root>
+            </InputRoot>
   
-            <Button variation='default'>Cadastrar</Button>
+          <Button variation='default'>Cadastrar</Button>
           </Form>
         </div>
         <div className='flex flex-row justify-center gap-2'>

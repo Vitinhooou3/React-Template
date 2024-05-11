@@ -1,24 +1,12 @@
 import React from 'react'
+import useSelector from '../utils/hooks/use-selector'
 
-interface SectionContainerProps {
+interface SectionProps {
   className:string
   children: React.ReactNode
 }
 
-interface SectionVariation extends Omit<SectionContainerProps,"ClassName"> {
-
-}
-
-interface SectionComponent extends SectionVariation {
-  variation: keyof typeof sectionVariations;
-}
-
-const sectionVariations = {
-  default: (_: SectionVariation) =>
-    <SectionContainer {..._} className='max-w-7xl w-11/12 h-full lg:px-0 px-5 items-center justify-center flex flex-col y-20' />,
-}
-
-function SectionContainer(props: SectionContainerProps) {
+function SectionContainer(props: SectionProps) {
   return (
     <div className={props.className}>
       {props.children}
@@ -26,11 +14,11 @@ function SectionContainer(props: SectionContainerProps) {
   )
 }
 
-function Section(props: SectionComponent) {
-  const Component = sectionVariations[props.variation] || sectionVariations.default;
-  return <Component {...props} />;
+const sectionVariations = {
+  default: (_: SectionProps) =>
+    <SectionContainer {..._} className='max-w-7xl w-11/12 h-full lg:px-0 px-5 py-16' />,
 }
 
-export {
-  Section
-}
+const Section = useSelector<keyof typeof sectionVariations,SectionProps>(sectionVariations)
+
+export default Section

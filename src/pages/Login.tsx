@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
-import { AuthContext } from '../context/AuthContext'
+import { AuthContext } from '../context/auth-context'
 import { zodResolver } from "@hookform/resolvers/zod"
-import Input from '../components/Input'
-import Dropdown from '../components/Dropdown'
-import { Form } from '../components/Form'
-import { Button } from '../components/Button'
-import { Span } from '../components/Span'
 import { Link } from 'react-router-dom'
+import InputRoot from '../components/input-root'
+import InputText from '../components/input-text'
+import Label from '../components/label'
+import Span from '../components/span'
+import { Form } from '../components/form'
+import Button from '../components/button'
 
 function Login() {
   const [loginLoading, setLoginLoding] = useState(false)
@@ -41,17 +42,17 @@ function Login() {
       <div className='flex flex-col w-96 h-86 items-center bg-white p-9 rounded shadow'>
         <Form onSubmit={handleSubmit(handleSingIn)} variation='default'>
 
-          <Input.Root>
-            <Input.Label>E-mail</Input.Label>
-            <Input.Text register={register("email")} variation='default'></Input.Text>
+          <InputRoot>
+            <Label>E-mail</Label>
+            <InputText {...register("email")} variation='default'></InputText>
             <Span variation='error'>{errors.email?.message}</Span>
-          </Input.Root>
+          </InputRoot>
 
-          <Input.Root>
-            <Input.Label>Senha</Input.Label>
-            <Input.Text register={register("password")} variation='default'></Input.Text>
+          <InputRoot>
+            <Label>Senha</Label>
+            <InputText {...register("password")} variation='default'></InputText>
             <Span variation='error'>{errors.password?.message}</Span>
-          </Input.Root>
+          </InputRoot>
           
           <div className='flex justify-between'>
             <span> <input type="checkbox" value={'true'} className='border-none outline-none'/> Lembrar usuário</span>

@@ -1,26 +1,12 @@
 import React from 'react'
+import useSelector from '../utils/hooks/use-selector'
 
-interface SpanContainerProps {
+interface SpanProps {
   className:string,
   children: React.ReactNode
 }
 
-interface SpanVariation extends Omit<SpanContainerProps, "className"> {
-
-}
-
-interface SpanComponent extends SpanVariation {
-  variation: keyof typeof spanVariations;
-}
-
-const spanVariations = {
-  default: (props: SpanVariation) =>
-    <SpanContainer children={props.children} className='mb-1 font-semibold px-1' />,
-  error: (props: SpanVariation) =>
-    <SpanContainer children={props.children} className='text-red-400' />,
-}
-
-function SpanContainer(props: SpanContainerProps) {
+function SpanContainer(props: SpanProps) {
   return (
     <span className={props.className}>
       {props.children}
@@ -28,11 +14,13 @@ function SpanContainer(props: SpanContainerProps) {
   )
 }
 
-function Span(props: SpanComponent) {
-  const Component = spanVariations[props.variation] || spanVariations.default;
-  return <Component {...props} />;
+const spanVariations = {
+  default: (props: SpanProps) =>
+    <SpanContainer children={props.children} className='mb-1 font-semibold px-1' />,
+  error: (props: SpanProps) =>
+    <SpanContainer children={props.children} className='text-red-400' />,
 }
 
-export {
-  Span
-}
+const Span = useSelector<keyof typeof spanVariations,SpanProps>(spanVariations)
+
+export default Span

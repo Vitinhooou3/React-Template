@@ -1,25 +1,32 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import { AuthProvider } from './context/AuthContext';
+import Login from './pages/login';
+import AdminRouters from './routers/admin-routers';
+import { AuthProvider } from './context/auth-context';
 import { ToastContainer } from 'react-toastify';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import If from './components/if';
 
 function App() {
+  const userType = Cookies.get('userType')
+
   return (
     <Router>
       <AuthProvider>
         <ToastContainer />
-        <div className="w-full h-full flex justify-center items-center">
-          <Routes>
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="home" element={<Home />} />
-            <Route path="" element={<Home />} />
-            <Route path="index.html" element={<Home />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="login" element={<Login />} />
+          <Route path="/*" element={
+            <>
+              <If conditional={userType == "admin"}>
+                <AdminRouters />
+              </If>
+              <If conditional={userType == "broker"}>
+                <AdminRouters />
+              </If>
+            </>
+          } />
+        </Routes>
       </AuthProvider>
     </Router>
   );

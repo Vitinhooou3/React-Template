@@ -1,44 +1,47 @@
-import React from 'react';
+import { LucideLoaderCircle } from 'lucide-react';
+import React, { LegacyRef, forwardRef } from 'react';
+import useSelector from '../utils/hooks/use-selector';
 
-interface ButtonContainerProps {
-  loading?: boolean;
-  loadingComponent?: React.ReactNode;
-  readonly?: boolean;
-  className:string
-  children:React.ReactNode
+interface ButtonProps {
+  loading?: boolean
+  loadingComponent?: React.ReactNode
+  children: React.ReactNode
+  className: string
+  ref: any
+  onClick?: (e: any) => any
+  type?: "submit" | "reset" | "button" | undefined
+  form?: string
 }
 
-interface ButtonVariation extends Omit<ButtonContainerProps, "className"> {
- 
-}
-
-interface ButtonComponent extends ButtonVariation {
-  variation: keyof typeof buttonVariations;
-}
-
-const buttonVariations = {
-  green: (props: ButtonVariation) =>
-    <ButtonContainer {...props} className='bg-green-500' />,
-  blue: (props: ButtonVariation) =>
-    <ButtonContainer {...props} className='bg-indigo-700' />,
-  default: (props: ButtonVariation) =>
-    <ButtonContainer {...props} className='bg-indigo-600 h-9 rounded text-white font-bold' />,
-}
-
-function ButtonContainer(_: ButtonContainerProps) {
+const ButtonContainer = forwardRef((_: ButtonProps, ref: LegacyRef<HTMLButtonElement>) => {
   return (
-    <button {..._}>
+    <button
+      ref={ref}
+      className={_.className}
+      onClick={_.onClick}
+      type={_.type}
+      form={_.form}
+      disabled={_.loading}
+    >
       {_.loading ? _.loadingComponent : _.children}
     </button>
   );
+})
+
+const buttonVariations = {
+  default: (props: ButtonProps, ref: any) => {
+    return (
+      <ButtonContainer
+        {...props}
+        ref={ref}
+        loadingComponent={
+          <LucideLoaderCircle className='w-6 h-6 rotating-div' />
+        }
+        className='bg-oikos-green w-full rounded shadow hover:bg-opacity-70 transition-all h-9 p-1 text-zinc-50 font-semibold flex justify-center items-center' />
+    )
+  }
 }
 
-function Button(props: ButtonComponent) {
-  const Component = buttonVariations[props.variation] || buttonVariations.default;
-  return <Component {...props} />;
-}
+const Button = useSelector<keyof typeof buttonVariations, ButtonProps>(buttonVariations)
 
-export {
-  ButtonComponent,
-  Button
-};
+export default Button
