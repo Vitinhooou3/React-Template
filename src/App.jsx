@@ -1,14 +1,12 @@
 import './App.css';
-import Login from './pages/login';
-import AdminRouters from './routers/admin-routers';
+import Login from './pages/login'
 import { AuthProvider } from './context/auth-context';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import If from './components/if';
+import Signup from './pages/Signup';
+import Home from './pages/home';
 
 function App() {
-  const userType = Cookies.get('userType')
 
   return (
     <Router>
@@ -16,16 +14,8 @@ function App() {
         <ToastContainer />
         <Routes>
           <Route path="login" element={<Login />} />
-          <Route path="/*" element={
-            <>
-              <If conditional={userType == "admin"}>
-                <AdminRouters />
-              </If>
-              <If conditional={userType == "broker"}>
-                <AdminRouters />
-              </If>
-            </>
-          } />
+          <Route path="signup" element={<Signup />} />
+          <Route path="/home" element={<Home/>} />
         </Routes>
       </AuthProvider>
     </Router>

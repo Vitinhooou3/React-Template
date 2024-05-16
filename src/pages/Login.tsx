@@ -54,12 +54,12 @@ function Login() {
             <Span variation='error'>{errors.password?.message}</Span>
           </InputRoot>
           
-          <div className='flex justify-between'>
+          <div className='flex justify-evenly gap-6'>
             <span> <input type="checkbox" value={'true'} className='border-none outline-none'/> Lembrar usuário</span>
             <a href='/home' className='text-blue-700 float-right'>Esqueceu a senha?</a>
           </div>
 
-          <Button variation='default'>Entrar</Button>
+          <Button variation='default'>Cadastrar</Button>
         </Form>
       </div>
       <div className='flex flex-row justify-center gap-2'>
