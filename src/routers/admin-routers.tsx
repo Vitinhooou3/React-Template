@@ -1,15 +1,21 @@
-import { LucideHandshake, LucideHome, LucideLock, LucideMailbox, LucideMenu } from 'lucide-react'
-import React, { useContext, useEffect, useState } from 'react'
+import { Cat, LucideHome, LucideMenu } from 'lucide-react'
+import React, { useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { AuthContext } from '../context/auth-context'
-import SidebarRoot from '../components/sidebar-root'
 import SidebarHref from '../components/sidebar-href'
-import SidebarMenu from '../components/sidebar-menu'
 import SidebarItem from '../components/sidebar-item'
-import SidebarContent from '../components/sidebar-content'
-import SidebarHamburguer from '../components/sidebar-hamburguer'
 import SidebarContext from '../components/sidebar-context'
 import If from '../components/if'
+import NavbarMenu from '../components/navbar-menu'
+import NavbarRoot from '../components/navbar-root'
+import NavbarHamburguer from '../components/navbar-hamburguer'
+import PlayerRoundStats from '../pages/player-round-stats'
+import PlayerRoundsList from '../pages/player-rounds-list'
+import PlayersList from '../pages/players-list'
+import PlayerRoundChartResult from '../pages/player-round-chart-result'
+import PlayerGamesList from '../pages/player-games-list'
+import PlayerRoundGame from '../pages/player-round-game'
+import PlayersListStats from '../pages/players-list-stats'
 
 function AdminRouters() {
     const { logout, isAuthenticated } = useContext(AuthContext)
@@ -17,38 +23,38 @@ function AdminRouters() {
     return (
         <If conditional={isAuthenticated}>
             <SidebarContext>
-                <SidebarRoot>
-                    <SidebarMenu>
-                        <SidebarItem href='/'>
+                <NavbarRoot>
+                    <NavbarMenu>
+                        <SidebarItem href='/player-game-list'>
                             <LucideHome className='w-6 h-6' strokeWidth={2} />
                             <SidebarHref>Home</SidebarHref>
-                        </SidebarItem>
-                        <SidebarItem href='/brokers'>
-                            <LucideHandshake className='w-6 h-6' strokeWidth={2} />
-                            <SidebarHref>Parceiros</SidebarHref>
-                        </SidebarItem>
-                        <SidebarItem href='/mailings'>
-                            <LucideMailbox className='w-6 h-6' strokeWidth={2} />
-                            <SidebarHref>Campanhas</SidebarHref>
-                        </SidebarItem>
-                        <SidebarItem href='/admins'>
-                            <LucideLock className='w-6 h-6' strokeWidth={2} />
-                            <SidebarHref>Administradores</SidebarHref>
                         </SidebarItem>
                         <SidebarItem onClick={logout} href='' variation='spacing-top'>
                             <LucideHome className='w-6 h-6' strokeWidth={2} />
                             <SidebarHref>Exit </SidebarHref>
                         </SidebarItem>
-                    </SidebarMenu>
-                    <SidebarContent>
-                        <SidebarHamburguer>
-                            <LucideMenu className='w-7 h-7 text-zinc-300' />
-                        </SidebarHamburguer>
-                        <Routes>
-                        </Routes>
-                    </SidebarContent>
-                </SidebarRoot>
+                    </NavbarMenu>
+                    <NavbarHamburguer>
+                        <div className='w-full'>
+                            <Cat className='w-7 h-7 text-white' />
+                        </div>
+                        <LucideMenu className='w-7 h-7 text-zinc-300' />
+                    </NavbarHamburguer>
+                </NavbarRoot>
             </SidebarContext>
+            <div className='h-screen pt-12'>
+                <div className='overflow-y-auto p-3 h-full'>
+                    <Routes>
+                        <Route path="/player-round-game" element={<PlayerRoundGame />} />
+                        <Route path="/player-round-stats" element={<PlayerRoundStats />} />
+                        <Route path="/player-game-list" element={<PlayerGamesList />} />
+                        <Route path="/player-rounds-list" element={<PlayerRoundsList />} />
+                        <Route path="/players-list" element={<PlayersList />} />
+                        <Route path="/players-list/round" element={<PlayersListStats />} />
+                        <Route path="/player-round-chart-result" element={<PlayerRoundChartResult />} />
+                    </Routes>
+                </div>
+            </div>
         </If>
     )
 }

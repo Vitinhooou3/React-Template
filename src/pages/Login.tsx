@@ -10,6 +10,8 @@ import Label from '../components/label'
 import Span from '../components/span'
 import { Form } from '../components/form'
 import Button from '../components/button'
+import { Cat } from 'lucide-react'
+import Content from '../components/content'
 
 function Login() {
   const [loginLoading, setLoginLoding] = useState(false)
@@ -37,36 +39,38 @@ function Login() {
   }
 
   return (
-    <section className=' flex flex-col gap-6 h-screen w-full justify-center items-center bg-gradient-to-b from-zinc-100 to-zinc-50'>
-      <h1 className='items-center text-xl font-bold'>Entre no Jogo</h1>
-      <div className='flex flex-col w-96 h-86 items-center bg-white p-9 rounded shadow'>
-        <Form onSubmit={handleSubmit(handleSingIn)} variation='default'>
-
-          <InputRoot>
-            <Label>E-mail</Label>
-            <InputText {...register("email")} variation='default'></InputText>
-            <Span variation='error'>{errors.email?.message}</Span>
-          </InputRoot>
-
-          <InputRoot>
-            <Label>Senha</Label>
-            <InputText {...register("password")} variation='default'></InputText>
-            <Span variation='error'>{errors.password?.message}</Span>
-          </InputRoot>
-          
-          <div className='flex justify-evenly gap-6'>
-            <span> <input type="checkbox" value={'true'} className='border-none outline-none'/> Lembrar usuário</span>
-            <a href='/home' className='text-blue-700 float-right'>Esqueceu a senha?</a>
-          </div>
-
-          <Button variation='default'>Cadastrar</Button>
-        </Form>
+    <Content>
+      <div className='items-center justify-center gap-3 flex flex-col text-black'>
+        <div className='flex gap-3 items-center'>
+          <Cat className='w-10 h-10' />
+          <h1 className='items-center text-xl font-bold'>Resgato</h1>
+        </div>
+        <div className='flex flex-col w-96 h-86 items-center bg-white p-9 rounded shadow-lg'>
+          <Form onSubmit={handleSubmit(handleSingIn)} variation='default'>
+            <InputRoot>
+              <Label>E-mail</Label>
+              <InputText {...register("email")} variation='default'></InputText>
+              <Span variation='error'>{errors.email?.message}</Span>
+            </InputRoot>
+            <InputRoot>
+              <Label>Senha</Label>
+              <InputText type='password' {...register("password")} variation='default'></InputText>
+              <Span variation='error'>{errors.password?.message}</Span>
+            </InputRoot>
+            <div className='flex justify-evenly gap-1'>
+              <p>Esqueceu a senha?</p>
+              <a href='/home' className='text-blue-700 float-right'>Recuperar Senha</a>
+            </div>
+            <Button variation='default'>Cadastrar</Button>
+          </Form>
+        </div>
+        <div className='flex flex-row justify-center gap-2'>
+          <p>Não possui uma conta? </p>
+          <Link to='/signup' className='text-blue-700 float-right'>Clique aqui!</Link>
+        </div>
       </div>
-      <div className='flex flex-row justify-center gap-2'>
-        <p>Não possui uma conta? </p>
-        <Link to='/signup' className='text-blue-700 float-right'>Clique aqui!</Link>
-      </div>
-    </section>
+    </Content>
+
   )
 }
 

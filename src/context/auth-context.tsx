@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 // import { config } from '../config/auth-config';
 // import { LoginSchema } from '../interfaces/schemas/login-schema';
 import { Axios } from '../interfaces/shared/axios';
-import { LoginService } from '../services/LoginService';
-import { config } from './AuthConfig';
+import { LoginService } from '../services/login-service';
+import { config } from './auth-config';
 // import { AuthContextType } from '../interfaces/shared/auth-context';
 // import { LoginEntity } from '../interfaces/entites/login-entity'
 // import { BaseResponseApi } from '../interfaces/shared/base-response-api'
@@ -22,7 +22,7 @@ const AuthContext = createContext<any>({
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const token = Cookies.get('jwtApplicationToken');
   const loginService = new LoginService()
-  const [isAuthenticated, setIsAuthenticated] = useState(!!token);
+  const [isAuthenticated, setIsAuthenticated] = useState(!!token||config.desactivateAuth);
   const navigate = useNavigate()
 
   async function signIn(data: any) {

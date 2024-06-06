@@ -1,6 +1,6 @@
 import axios from "axios";
-import { LoginForm } from "../interfaces/data/LoginForm";
 import { api } from "./api";
+import { LoginForm } from '../interfaces/data/login-form'
 
 export class LoginService {
   loginPost(_: LoginForm) {

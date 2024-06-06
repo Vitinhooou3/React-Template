@@ -37,7 +37,7 @@ const buttonVariations = {
         loadingComponent={
           <LucideLoaderCircle className='w-6 h-6 rotating-div' />
         }
-        className='bg-oikos-green w-full rounded shadow hover:bg-opacity-70 transition-all h-9 p-1 bg-blue-700 text-white font-semibold flex justify-center items-center' />
+        className='bg-oikos-green w-full rounded text-center shadow hover:bg-opacity-70 transition-all h-9 p-1 px-3 bg-blue-500 text-white font-semibold flex justify-center items-center' />
     )
   }
 }

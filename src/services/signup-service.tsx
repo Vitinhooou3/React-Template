@@ -1,8 +1,8 @@
 
 import axios from 'axios';
-import { SignupForm } from '../interfaces/data/SignupForm';
 import { api } from './api';
 import { toast } from 'react-toastify';
+import { SignupForm } from '../interfaces/data/signup-form';
 
 export class SignupService {
   async signupPost(singupForm : SignupForm) {

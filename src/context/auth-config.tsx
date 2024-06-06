@@ -5,3 +5,5 @@ export const config = {
   ],
   desactivateAuth:true
 }
+
+export const back:any  = -1

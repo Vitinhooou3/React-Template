@@ -4,7 +4,7 @@ import { AuthProvider } from './context/auth-context';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Signup from './pages/Signup';
-import Home from './pages/home';
+import AdminRouters from './routers/admin-routers';
 
 function App() {
 
@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
-          <Route path="/home" element={<Home/>} />
+          <Route path="/*" element={<AdminRouters/>} />
         </Routes>
       </AuthProvider>
     </Router>

@@ -16,7 +16,7 @@ const ContentVariations = {
     default: (props: ContentContainerProps) =>
         <ContentContainer
             {...props}
-            className='h-full flex flex-col overflow-y-auto w-full relative '
+            className='min-h-screen flex-col gap-6 items-center justify-center flex text-black py-16'
         />
 }
 

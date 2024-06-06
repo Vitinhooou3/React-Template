@@ -18,7 +18,7 @@ function FormContainer(props: FormProps) {
 
 const formVariation = {
     default: (props: FormProps) =>
-        <FormContainer {...props} className='flex flex-col gap-3' />
+        <FormContainer {...props} className='flex flex-col gap-3 w-full' />
 }
 
 const Form = useSelector<keyof typeof formVariation, FormProps>(formVariation)

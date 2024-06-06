@@ -16,7 +16,7 @@ function SectionContainer(props: SectionProps) {
 
 const sectionVariations = {
   default: (_: SectionProps) =>
-    <SectionContainer {..._} className='max-w-7xl w-11/12 h-full lg:px-0 px-5 py-16' />,
+    <SectionContainer {..._} className='max-w-7xl w-11/12 h-full lg:px-16 px-5 py-16' />,
 }
 
 const Section = useSelector<keyof typeof sectionVariations,SectionProps>(sectionVariations)
